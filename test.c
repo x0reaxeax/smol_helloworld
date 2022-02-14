@@ -1,1 +1,1 @@
-int _x=__FILE__;
+int _=__FILE__;
