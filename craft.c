@@ -6,6 +6,7 @@ int main(void) {
                     0x31, 0xdb,
                     0x31, 0xd2,
         
+                    0x43,
                     0x40,
                     0x83, 0xf8, 0x04,
                     0x7c, 0xfa,
