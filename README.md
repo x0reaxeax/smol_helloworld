@@ -94,7 +94,7 @@ int main(void) {
 One more thing..
 We need to expose `__FILE__` to the compiler and the shortest way I could come up with to do this is:
 ```c
-int _x=__FILE__;
+int _=__FILE__;
 ```
 
 That's **15** characters! If someone knows of a shorter way, please please please hit me up!
