@@ -3,6 +3,7 @@ _start:
     xor ebx, ebx        ; fdno
     xor edx, edx        ; slen
     
+    inc ebx             ; stdout
 .loopeax:
     inc eax
     cmp eax, 4          ; sys_write = 4
