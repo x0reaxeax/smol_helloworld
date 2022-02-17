@@ -31,7 +31,7 @@ int main(){puts(__FILE__);}
 2. We can't use nullbyte basically for the exact same reason
 
 **Workaround:**
-Use loops instead of `mov`s and `lea`s!
+Use loops instead of `mov`s and `lea`s! (.. idk why not just do `add eax, 4` and `add edx, 11`.. im a cretin. fix this later) 
 
 ```asm
 _start:
