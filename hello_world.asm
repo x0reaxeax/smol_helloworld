@@ -2,21 +2,15 @@ _start:
     xor eax, eax        ; syscall no
     xor ebx, ebx        ; fdno
     xor edx, edx        ; slen
-    
-    inc ebx             ; stdout
-.loopeax:
-    inc eax
-    cmp eax, 4          ; sys_write = 4
-    jl .loopeax
 
-.loopedx:
-    inc edx
-    cmp edx, 11         ; strlen = 11
-    jl .loopedx
-    
-    mov ecx, 0x80480f1  ; "helloworld!"
+    inc ebx             ; stdout
+
+    add eax, 4          ; sys_write = 4
+    add edx, 11         ; strlen = 11
+
+    mov ecx, 0x80480ec  ; "helloworld!"
     int 0x80
-    
+
     db 'h'
     db 'e'
     db 'l'

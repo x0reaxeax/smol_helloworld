@@ -3,7 +3,7 @@
 ### Challenge rules:
 - [x] No binary modifications  
 - [x] No external libraries or code
-- [x] OS is Linux (3.7)
+- [x] OS is Linux (3.7 i686)
 - [x] GCC compiler (gcc version 4.7.2)
 - [x] This is not allowed: `$ gcc smoll.c -D"_=int main() {puts(\"hello world\");}"`
 
@@ -31,7 +31,7 @@ int main(){puts(__FILE__);}
 2. We can't use nullbyte basically for the exact same reason
 
 **Workaround:**
-Use loops instead of `mov`s and `lea`s! (.. idk why not just do `add eax, 4` and `add edx, 11`.. im a cretin. fix this later) 
+Just avoid `mov`s and `lea`s! 
 
 ```asm
 _start:
@@ -40,17 +40,11 @@ _start:
     xor edx, edx
     
     inc ebx
-.loopeax:
-    inc eax
-    cmp eax, 4          ; sys_write = 4
-    jl .loopeax
 
-.loopedx:
-    inc edx
-    cmp edx, 11         ; strlen = 11 (actually 10, but 10 (0xa) is ASCII newline, which we can't use
-    jl .loopedx
+    add eax, 4          ; sys_write = 4
+    add edx, 11         ; strlen = 11 (actually 10, but (int) 10 (0xa) is ASCII newline, which we can't use)
     
-    mov ecx, 0x80480f1  ; __FILE__ magic address (0x80480d8) + offset to "helloworld!"
+    mov ecx, 0x80480ec  ; __FILE__ magic address (0x80480d8) + offset to "helloworld!"
     int 0x80
 ```
 
@@ -101,8 +95,10 @@ That's **15** characters! If someone knows of a shorter way, please please pleas
 
 Great, now for the final step - compilation!
 ```sh
-gcc -nostdlib -e _start=0x80480d8 -z execstack -x c "GARBAGE_NAME"
+gcc -nostdlib -z execstack -e 0x80480d8 -x c "{GARBAGE_NAME}"
 ```
+
+.. or just run `make`!  
 
 ```
 $ ./a.out
