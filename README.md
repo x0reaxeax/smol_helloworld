@@ -1,4 +1,4 @@
-# Very smol C hello world, 15 characters!
+# Very smol C hello world, 11 characters!
 
 ### Challenge rules:
 - [x] No binary modifications  
@@ -81,12 +81,12 @@ int main(void) {
 ```
 
 One more thing..
-We need to expose `__FILE__` to the compiler and the shortest way I could come up with to do this is:
+We need to expose `__FILE__` to the compiler. GCC supports the implicit int rule, so we can also omit data type declaration! And the shortest way I could come up with to do this is:
 ```c
-int _=__FILE__;
+_=__FILE__;
 ```
 
-That's **15** characters! If someone knows of a shorter way, please please please hit me up!
+That's **11** characters! If someone knows of a shorter way, please please please hit me up!
 
 Great, now for the final step - compilation!
 ```sh
