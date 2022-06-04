@@ -5,10 +5,14 @@ _start:
 
     inc ebx             ; stdout
 
-    add eax, 4          ; sys_write = 4
+    add al,  4          ; sys_write = 4
     add edx, 11         ; strlen = 11
 
-    mov ecx, 0x80480ec  ; "helloworld!"
+    mov ecx, 0x8048285  ; "helloworld!"
+    int 0x80
+    
+    xor eax, eax
+    inc eax
     int 0x80
 
     db 'h'
