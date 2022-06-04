@@ -4,7 +4,7 @@ all:
 	cp test.c out/
 	cd out && ./craft
 	rm out/craft
-	cd out && gcc -o bin -nostdlib -z execstack -e 0x80480d8 -x c *	
+	cd out && gcc -nostdlib -z execstack -e 0x804826d -x c *	
 
 clean:
 	rm -rf out/
